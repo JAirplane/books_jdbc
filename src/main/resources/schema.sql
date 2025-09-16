@@ -1,0 +1,6 @@
+CREATE TABLE books (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    publication_year INTEGER CHECK(publication_year <= EXTRACT(YEAR FROM CURRENT_DATE))
+);
