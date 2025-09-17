@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -53,7 +52,7 @@ public class BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public Optional<Book> createNewBook(Book book) {
+    public Book createNewBook(Book book) {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -71,14 +70,13 @@ public class BookRepositoryImpl implements BookRepository {
         }, keyHolder);
 
         book.setId(Objects.requireNonNull(keyHolder.getKey()).longValue());
-        return Optional.of(book);
+        return book;
     }
 
     @Override
     public Optional<Book> updateBookInfo(Book book) {
 
-        if(book == null || book.getId() == null || book.getTitle() == null || book.getAuthor() == null ||
-                book.getId() < 0 || book.getTitle().isBlank() || book.getAuthor().isBlank()) {
+        if(book == null) {
             return Optional.empty();
         }
 

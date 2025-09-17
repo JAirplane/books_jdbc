@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface BookRepository {
 
     Optional<Book> getBookById(Long id);
-    Optional<Book> createNewBook(Book book);
+    Book createNewBook(Book book);
     Optional<Book> updateBookInfo(Book book);
     boolean deleteBookById(Long id);
 }
